@@ -3,7 +3,7 @@
 KuDaur Application is 
 ## Team Members
 
-- [@Hadid Ray Aldy C7258N2258](https://www.github.com/Hadid-Ray-Aldy)
+- [@Hadid Ray Aldy C7258N2258](https://www.github.com/Yume-Desu)
 - [@Yusuf Irsyaduddin C2258F2260](https://www.github.com/#)
 - [@Maria Febriyanti Simanjuntak M2012F1203](https://www.github.com/#)
 - [@Naufaliando Yudo Kusumo M2004F0332](https://www.github.com/#)
