@@ -1,6 +1,7 @@
 # Project Capstone C22-PS348
 
-KuDaur Application is 
+KuDaur Application
+
 ## Team Members
 
 - [@Abdun Nafi' A2004F0306](https://www.github.com/#)
