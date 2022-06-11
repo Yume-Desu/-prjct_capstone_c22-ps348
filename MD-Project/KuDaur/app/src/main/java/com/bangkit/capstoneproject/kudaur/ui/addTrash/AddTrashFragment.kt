@@ -73,11 +73,7 @@ class AddTrashFragment : Fragment() {
         viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-//        viewModel.isSucceed.observe(viewLifecycleOwner) {
-//            it.getContentIfNotHandled()?.let { isSucceed ->
-//                if (isSucceed) toStoryList(getString(R.string.story_created_successfully))
-//            }
-//        }
+
         viewModel.toastText.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { toastText ->
                 showToast(toastText)
