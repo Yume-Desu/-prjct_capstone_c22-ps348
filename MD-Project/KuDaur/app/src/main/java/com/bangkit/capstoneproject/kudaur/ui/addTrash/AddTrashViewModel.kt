@@ -14,7 +14,7 @@ class AddTrashViewModelFactory(private val token: String): ViewModelProvider.New
 class AddTrashViewModel(private val token: String) : ViewModel() {
 
     companion object {
-        private const val TAG = "AddStoryViewModel"
+        private const val TAG = "AddTrashViewModel"
     }
 
     private val _file = MutableLiveData<File>()

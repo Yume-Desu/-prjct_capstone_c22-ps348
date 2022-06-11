@@ -84,7 +84,7 @@ class AddTrashFragment : Fragment() {
                 getFile = it
                 val imageBmp = BitmapFactory.decodeFile(it.path)
                 binding.imgTrash.setImageBitmap(imageBmp)
-//                outputGenerator(imageBmp)
+                outputGenerator(imageBmp)
             }
         }
 
@@ -102,25 +102,23 @@ class AddTrashFragment : Fragment() {
 //        binding.buttonAddTrash.setOnClickListener { uploadImage() }
     }
 
-//    private fun outputGenerator(bitmap: Bitmap?) {
-//
-//        val model = Model1.newInstance(this)
+    private fun outputGenerator(bitmap: Bitmap?) {
+
+        binding.tvResult.text = getString(R.string.metal)
+
+//        val model = Model1.newInstance(context)
 //
 //        // Creates inputs for reference.
-//        val newBitmap = bitmap?.copy(Bitmap.Config.ARGB_8888, true)
 //        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
-//        inputFeature0.loadBuffer(newBitmap)
+//        inputFeature0.loadBuffer(byteBuffer)
 //
 //        // Runs model inference and gets result.
-//        val outputs = model.process(model)
-//            .outputFeature0AsTensorBuffer.apply {
-//
-//            }
+//        val outputs = model.process(inputFeature0)
 //        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 //
 //        // Releases model resources if no longer used.
 //        model.close()
-//    }
+    }
 
     private fun startGallery() {
         val intent = Intent()
