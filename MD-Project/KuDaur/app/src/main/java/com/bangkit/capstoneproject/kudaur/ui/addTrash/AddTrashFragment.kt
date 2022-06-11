@@ -31,6 +31,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 import java.io.FileOutputStream
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class AddTrashFragment : Fragment() {
 
@@ -41,6 +42,7 @@ class AddTrashFragment : Fragment() {
     private lateinit var currentPhotoPath: String
 
     private var getFile: File? = null
+    private var imageSize: Int = 224
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
@@ -84,7 +86,9 @@ class AddTrashFragment : Fragment() {
                 getFile = it
                 val imageBmp = BitmapFactory.decodeFile(it.path)
                 binding.imgTrash.setImageBitmap(imageBmp)
-                outputGenerator(imageBmp)
+
+                val image = Bitmap.createScaledBitmap(imageBmp, imageSize, imageSize, false)
+                outputGenerator(image)
             }
         }
 
@@ -102,22 +106,51 @@ class AddTrashFragment : Fragment() {
 //        binding.buttonAddTrash.setOnClickListener { uploadImage() }
     }
 
-    private fun outputGenerator(bitmap: Bitmap?) {
+    private fun outputGenerator(bitmap: Bitmap) {
 
-        binding.tvResult.text = getString(R.string.metal)
+        val model = Model1.newInstance(requireContext())
 
-//        val model = Model1.newInstance(context)
+        // Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
+        val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
+        byteBuffer.order(ByteOrder.nativeOrder())
+
+        val intValues = IntArray(imageSize * imageSize)
+        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+        var pixel = 0
+//        for (i in 0..imageSize) {
+//            for (j in 0..imageSize) {
+//                val input = intValues[pixel++]
 //
-//        // Creates inputs for reference.
-//        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
+//                byteBuffer.putFloat((((input.shr(16) and 0xFF) - 0) / 255.0f))
+//                byteBuffer.putFloat((((input.shr(8) and 0xFF) - 0) / 255.0f))
+//                byteBuffer.putFloat((((input and 0xFF) - 0) / 255.0f))
+//            }
+//        }
 //        inputFeature0.loadBuffer(byteBuffer)
 //
 //        // Runs model inference and gets result.
 //        val outputs = model.process(inputFeature0)
 //        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 //
-//        // Releases model resources if no longer used.
-//        model.close()
+//        val confidences : FloatArray = outputFeature0.floatArray
+//        var maxPos = 0
+//        var maxConfidence = 0F
+//        for (i in 0..confidences.size) {
+//            if (confidences[i] > maxConfidence) {
+//                maxConfidence = confidences[i]
+//                maxPos = i
+//            }
+//        }
+//        val classes = arrayOf("cardboard","glass","metal","paper","plastic","trash")
+//
+//        binding.tvResult.text = classes[maxPos]
+
+        binding.tvResult.text = getString(R.string.metal)
+
+        // Releases model resources if no longer used.
+        model.close()
+//        return byteBuffer
     }
 
     private fun startGallery() {
