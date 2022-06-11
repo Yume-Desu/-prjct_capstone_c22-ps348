@@ -42,7 +42,10 @@ class AddTrashFragment : Fragment() {
     private lateinit var currentPhotoPath: String
 
     private var getFile: File? = null
-    private var imageSize: Int = 224
+    private var imageSize: Int = 300
+    private val IMAGE_MEAN = 0
+    private val IMAGE_STD = 255.0f
+    private val PIXEL_SIZE = 3
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
@@ -112,45 +115,46 @@ class AddTrashFragment : Fragment() {
 
         // Creates inputs for reference.
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
-        val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
+        val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * PIXEL_SIZE)
         byteBuffer.order(ByteOrder.nativeOrder())
 
         val intValues = IntArray(imageSize * imageSize)
         bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         var pixel = 0
-//        for (i in 0..imageSize) {
-//            for (j in 0..imageSize) {
-//                val input = intValues[pixel++]
-//
-//                byteBuffer.putFloat((((input.shr(16) and 0xFF) - 0) / 255.0f))
-//                byteBuffer.putFloat((((input.shr(8) and 0xFF) - 0) / 255.0f))
-//                byteBuffer.putFloat((((input and 0xFF) - 0) / 255.0f))
-//            }
-//        }
-//        inputFeature0.loadBuffer(byteBuffer)
-//
-//        // Runs model inference and gets result.
-//        val outputs = model.process(inputFeature0)
-//        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-//
-//        val confidences : FloatArray = outputFeature0.floatArray
-//        var maxPos = 0
-//        var maxConfidence = 0F
-//        for (i in 0..confidences.size) {
-//            if (confidences[i] > maxConfidence) {
-//                maxConfidence = confidences[i]
-//                maxPos = i
-//            }
-//        }
-//        val classes = arrayOf("cardboard","glass","metal","paper","plastic","trash")
-//
-//        binding.tvResult.text = classes[maxPos]
 
-        binding.tvResult.text = getString(R.string.metal)
+        for (i in 0 until imageSize) {
+            for (j in 0 until imageSize) {
+                val input = intValues[pixel++]
+
+                byteBuffer.putFloat((((input.shr(16) and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
+                byteBuffer.putFloat((((input.shr(8) and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
+                byteBuffer.putFloat((((input and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
+            }
+        }
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        val confidences : FloatArray = outputFeature0.floatArray
+        var maxPos = 0
+        var maxConfidence = 0F
+
+        for (i in 0 until confidences.size) {
+            if (confidences[i] > maxConfidence) {
+                maxConfidence = confidences[i]
+                maxPos = i
+            }
+        }
+        val classes = arrayOf("cardboard","glass","metal","paper","plastic","trash")
+
+        binding.tvResult.text = classes[maxPos]
+
+//        binding.tvResult.text = getString(R.string.metal)
 
         // Releases model resources if no longer used.
         model.close()
-//        return byteBuffer
     }
 
     private fun startGallery() {
