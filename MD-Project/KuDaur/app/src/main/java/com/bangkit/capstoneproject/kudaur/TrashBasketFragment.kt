@@ -34,7 +34,7 @@ class TrashBasketFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trash_basket, container, false)
+        return inflater.inflate(R.layout.fragment_trash_bag, container, false)
     }
 
     companion object {

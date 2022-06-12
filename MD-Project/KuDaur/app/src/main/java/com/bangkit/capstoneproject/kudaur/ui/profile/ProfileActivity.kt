@@ -11,6 +11,8 @@ import com.bangkit.capstoneproject.kudaur.databinding.ActivityProfileBinding
 
 class ProfileActivity : AppCompatActivity() {
 
+    private lateinit var session: SessionPreference
+
     private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +21,10 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.profile)
+
+        session = SessionPreference(applicationContext)
+
+        binding.namaUser.text = session.getSession()?.name
 
         binding.buttonLogout.setOnClickListener {
             SessionPreference(this).clearSession()
