@@ -3,6 +3,7 @@ package com.bangkit.capstoneproject.kudaur.ui.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
 import com.bangkit.capstoneproject.kudaur.MainActivity
 import com.bangkit.capstoneproject.kudaur.R
@@ -24,6 +25,10 @@ class ProfileActivity : AppCompatActivity() {
         session = SessionPreference(applicationContext)
 
         binding.namaUser.text = session.getSession()?.name
+
+        binding.editBahasa.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
 
         binding.buttonLogout.setOnClickListener {
             SessionPreference(this).clearSession()
