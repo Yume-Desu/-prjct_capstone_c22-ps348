@@ -35,9 +35,9 @@
     <string name="add_to_trash_bag">Masukkan kantong sampah</string>
     <string name="choose_a_picture">Pilih foto</string>
     <string name="metal">Logam</string>
-    <string name="nama_user">Nama User</string>
-    <string name="emailuser">emailuser</string>
-    <string name="pengaturan">Pengaturan</string>
-    <string name="ubah_tampilan_tema">Ubah tampilan tema</string>
-    <string name="atur_profil">Atur Profil</string>
+    <string name="cardboard">Kardus</string>
+    <string name="glass">Kaca</string>
+    <string name="paper">Kertas</string>
+    <string name="plastic">Plastik</string>
+    <string name="organic">Organik</string>
 </resources>
