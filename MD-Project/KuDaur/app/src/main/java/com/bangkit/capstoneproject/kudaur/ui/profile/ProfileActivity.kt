@@ -26,7 +26,7 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.namaUser.text = session.getSession()?.name
 
-        binding.editBahasa.setOnClickListener {
+        binding.changeLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
 
