@@ -12,7 +12,6 @@ import com.bangkit.capstoneproject.kudaur.databinding.ActivityProfileBinding
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var session: SessionPreference
-
     private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -43,17 +43,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/gambar_profil"
                 tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/email_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/emailuser"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/nama_user"
-                app:layout_constraintStart_toStartOf="@+id/nama_user"
-                app:layout_constraintTop_toBottomOf="@+id/nama_user" />
+<!--            <TextView-->
+<!--                android:id="@+id/email_user"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text="@string/emailuser"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="18sp"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/nama_user"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/nama_user"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/nama_user" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
