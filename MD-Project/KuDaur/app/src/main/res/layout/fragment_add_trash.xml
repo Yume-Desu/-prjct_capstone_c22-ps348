@@ -15,8 +15,8 @@
 
     <ImageView
         android:id="@+id/img_trash"
-        android:layout_width="212dp"
-        android:layout_height="212dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
@@ -79,7 +79,7 @@
         android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="@color/light_green"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/tv_trash_type"
         app:layout_constraintStart_toStartOf="@+id/tv_trash_type"
         app:layout_constraintTop_toBottomOf="@+id/tv_trash_type" />

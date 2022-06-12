@@ -160,6 +160,7 @@ class AddTrashFragment : Fragment() {
         )
 
         binding.tvResult.text = classes[maxPos]
+        binding.tvResult.visibility = View.VISIBLE
 
 //        binding.tvResult.text = getString(R.string.metal)
 
