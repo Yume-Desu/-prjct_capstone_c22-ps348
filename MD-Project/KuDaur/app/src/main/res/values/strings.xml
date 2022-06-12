@@ -40,4 +40,9 @@
     <string name="paper">Kertas</string>
     <string name="plastic">Plastik</string>
     <string name="organic">Organik</string>
+    <string name="nama_user">Nama User</string>
+    <string name="emailuser">emailuser</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="ubah_tampilan_tema">Ubah tampilan tema</string>
+    <string name="atur_profil">Atur Profil</string>
 </resources>
