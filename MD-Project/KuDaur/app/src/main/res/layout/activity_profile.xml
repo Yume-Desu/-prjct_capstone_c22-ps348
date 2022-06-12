@@ -133,14 +133,15 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/border_pengaturan_detail"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout2"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="14dp">
+                tools:ignore="MissingConstraints">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/change_language"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/change_language"
                     tools:context=".ui.profile.ProfileActivity">
 
                     <TextView
@@ -176,9 +177,10 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/border_pengaturan_detail"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout3"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="16dp">
+                tools:ignore="MissingConstraints">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
