@@ -46,4 +46,7 @@
     <string name="ubah_tampilan_tema">Ubah tampilan tema</string>
     <string name="atur_profil">Atur Profil</string>
     <string name="empty_trash_bag">Kantong sampah masih kosong</string>
+    <string name="user_name">nama user</string>
+    <string name="change_language">Ubah Bahasa</string>
+    <string name="logout">Logout</string>
 </resources>
