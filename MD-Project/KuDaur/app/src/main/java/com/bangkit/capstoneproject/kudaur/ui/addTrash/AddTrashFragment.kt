@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstoneproject.kudaur.R
 import com.bangkit.capstoneproject.kudaur.data.preferences.SessionPreference
 import com.bangkit.capstoneproject.kudaur.databinding.FragmentAddTrashBinding
-import com.bangkit.capstoneproject.kudaur.ml.Model1
+import com.bangkit.capstoneproject.kudaur.ml.ModelClassify
 import com.bangkit.capstoneproject.kudaur.utils.createCustomTempFile
 import com.bangkit.capstoneproject.kudaur.utils.rotateBitmap
 import com.bangkit.capstoneproject.kudaur.utils.uriToFile
@@ -74,7 +74,8 @@ class AddTrashFragment : Fragment() {
         session = SessionPreference(view.context)
         val token = session.getAuthToken() ?: ""
 
-        viewModel = ViewModelProvider(this, AddTrashViewModelFactory(token))[AddTrashViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, AddTrashViewModelFactory(token))[AddTrashViewModel::class.java]
         viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
@@ -111,10 +112,12 @@ class AddTrashFragment : Fragment() {
 
     private fun outputGenerator(bitmap: Bitmap) {
 
-        val model = Model1.newInstance(requireContext())
+        val model = ModelClassify.newInstance(requireContext())
 
         // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
+        val inputFeature0 =
+            TensorBuffer.createFixedSize(intArrayOf(1, 300, 300, 3), DataType.FLOAT32)
+
         val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * PIXEL_SIZE)
         byteBuffer.order(ByteOrder.nativeOrder())
 
@@ -137,7 +140,7 @@ class AddTrashFragment : Fragment() {
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        val confidences : FloatArray = outputFeature0.floatArray
+        val confidences: FloatArray = outputFeature0.floatArray
         var maxPos = 0
         var maxConfidence = 0F
 
@@ -147,7 +150,14 @@ class AddTrashFragment : Fragment() {
                 maxPos = i
             }
         }
-        val classes = arrayOf("cardboard","glass","metal","paper","plastic","trash")
+        val classes = arrayOf(
+            getString(R.string.cardboard),
+            getString(R.string.glass),
+            getString(R.string.metal),
+            getString(R.string.organic),
+            getString(R.string.paper),
+            getString(R.string.plastic)
+        )
 
         binding.tvResult.text = classes[maxPos]
 
@@ -226,8 +236,7 @@ class AddTrashFragment : Fragment() {
             binding.buttonAddTrash.isEnabled = false
             binding.edtDescription.isEnabled = false
             binding.pbAddStory.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             binding.buttonCamera.isEnabled = true
             binding.buttonGallery.isEnabled = true
             binding.buttonAddTrash.isEnabled = true

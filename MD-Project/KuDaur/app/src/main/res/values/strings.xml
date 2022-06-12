@@ -35,4 +35,9 @@
     <string name="add_to_trash_bag">Masukkan kantong sampah</string>
     <string name="choose_a_picture">Pilih foto</string>
     <string name="metal">Logam</string>
+    <string name="cardboard">cardboard</string>
+    <string name="glass">glass</string>
+    <string name="paper">paper</string>
+    <string name="plastic">plastic</string>
+    <string name="organic">organic</string>
 </resources>
