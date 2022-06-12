@@ -1,10 +1,9 @@
+import json
+import sqlalchemy
 from API.userId import userId
 from app import app, response, db
-import sqlalchemy
-from google.cloud.sql.connector import connector
 from flask import request
-import json
-
+from google.cloud.sql.connector import connector
 
 def singleObject(dataUser):
     dataUser = {
